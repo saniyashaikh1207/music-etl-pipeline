@@ -23,18 +23,18 @@ load.py      ──► PostgreSQL (fact_tracks, dim_artists, dim_albums tables)
 ```
 
 **Data model (star schema):**
-- `dim_artists` — artist_id (PK), artist_name, nb_album, nb_fan
-- `dim_albums` — album_id (PK), album_title, release_date, genre_id
-- `fact_tracks` — track_id (PK), artist_id (FK), album_id (FK), title, duration, rank, explicit_lyrics, load_timestamp
+- `dim_artists` - artist_id (PK), artist_name, nb_album, nb_fan
+- `dim_albums` - album_id (PK), album_title, release_date, genre_id
+- `fact_tracks` - track_id (PK), artist_id (FK), album_id (FK), title, duration, rank, explicit_lyrics, load_timestamp
 
 ## Tech stack
 
 - Python 3
-- `requests` — Deezer API calls
-- `pandas` — data wrangling / CSV staging
-- `psycopg2` — PostgreSQL driver
-- `python-dotenv` — environment variable / secrets management
-- PostgreSQL + pgAdmin — data warehouse
+- `requests` - Deezer API calls
+- `pandas` - data wrangling / CSV staging
+- `psycopg2` - PostgreSQL driver
+- `python-dotenv` - environment variable / secrets management
+- PostgreSQL + pgAdmin - data warehouse
 
 ## Setup
 
@@ -68,8 +68,8 @@ python transform.py    # builds fact/dimension CSVs
 python load.py          # loads CSVs into PostgreSQL (upsert, idempotent)
 ```
 
-Re-running `extract.py` is safe — it skips artists/albums already
-downloaded. Re-running `load.py` is also safe — it upserts rather than
+Re-running `extract.py` is safe - it skips artists/albums already
+downloaded. Re-running `load.py` is also safe - it upserts rather than
 duplicating rows.
 
 ## Resetting / starting fresh
@@ -83,6 +83,6 @@ rmdir /s /q data\raw_data data\processed_data logs   # Windows
 
 ## Notes
 
-- All credentials are loaded from a local `.env` file (never committed —
+- All credentials are loaded from a local `.env` file (never committed -
   see `.gitignore`). Use `.env.example` as a template.
 - Logs for every run are written to `logs/pipeline.log`. 
